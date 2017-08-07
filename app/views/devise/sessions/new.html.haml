@@ -1,0 +1,18 @@
+%h3._center._m-b-xl Log in
+
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  - flash.each do |name, msg|
+    .alert.alert-danger
+      %p.text-danger.text-left
+      = msg
+  .form-group
+    = f.label :email
+    = f.email_field :email, placeholder: 'Your Email', class: 'form-control', autofocus: true
+  .form-group
+    = f.label :password
+    = f.password_field :password, placeholder: 'Your Password', class: 'form-control'
+  .form-group
+    = f.submit "Login", class: 'btn btn-info btn-block'
+  ._m-t-xl._center
+    Do not have an account?
+    = render "devise/shared/links"

@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    %title Bugcycle
+  %body
+    .container
+      .row._m-b-xl
+        .col-lg-6.col-lg-offset-3.col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1
+          ._center._m-b-xl._m-t-xl
+            = image_tag 'road.png', width: 270
+          .login-wrapper
+            = yield
