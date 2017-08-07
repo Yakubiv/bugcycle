@@ -1,0 +1,8 @@
+= image_tag 'road.png', width: 60
+%ul.header-tabs.pull-right
+  %li.header-tab{ class: active_if?(controller: 'bicycles', action: 'index') }
+    = link_to 'Bicycles', bicycles_path
+  %li.header-tab{ class: active_if?(controller: 'manages') }
+    = link_to 'Manage bicycles', manages_path
+  %li.header-tab
+    = link_to 'Logout', destroy_user_session_path, method: :delete

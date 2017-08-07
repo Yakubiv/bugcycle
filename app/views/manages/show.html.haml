@@ -1,0 +1,40 @@
+%h2
+  Bicycles manage
+  %small.text-muted= @bicycles.count
+%hr
+%section._h_wrapper
+  %small.pull-right
+    = link_to new_bicycle_path, class: 'btn' do
+      %i.fa.fa-plus
+      Add bicycle
+
+  - if @bicycles.any?
+    %table.table
+      %thead
+        %th
+        %th Name
+        %th Description
+        %th Suggests
+        %th
+      %tbody
+        - @bicycles.each do |bike|
+          %tr
+            %td= image_tag bike.image, width: 30
+            %td.text-bold= link_to bike.name, bike
+            %td= truncate bike.description, length: 150
+            %td
+              7
+            %th
+              = link_to edit_bicycle_path(bike) do
+                %i.fa.fa-pencil
+              = link_to bicycle_path(bike), method: :delete, data: {confirm: 'Are you sure?'} do
+                %i.fa.fa-trash
+  - else
+    .blank-slate
+      .slate-image
+        ._center
+          %i.fa.fa-info-circle
+      .slate-text
+        ._center No Bikes Found
+      .slate-description
+        ._center You do not reinventing any bikes yet
