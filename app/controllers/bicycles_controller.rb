@@ -2,7 +2,8 @@ class BicyclesController < ApplicationController
   before_action :load_bicycle, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bicycles = Bicycle.includes(:category).page(params[:page]).per(2)
+    @bicycles = Bicycle.except_usage.includes(:category)
+                                    .page(params[:page]).per(2)
   end
 
   def show

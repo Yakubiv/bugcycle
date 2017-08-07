@@ -16,3 +16,49 @@
     a, a:hover { color: #333; text-decoration: none; }
   }
 }
+
+
+.search-field {
+  line-height: 40px;
+  position: relative;
+  & > label {
+    cursor: pointer;
+    margin-left: 15px;
+    margin-right: 5px;
+    margin-bottom: 0 !important;
+    @include media-breakpoint-up(md) {
+      margin-left: 25px;
+      margin-right: 5px;
+    }
+
+    &:before {
+      font-family: 'FontAwesome';
+      content: "\f002";
+      color: $gray;
+      position: relative;
+      left: 30px;
+
+      height: 29px;
+      line-height: 48px;
+      font-size: 1.1em;
+      width: 1em;
+    }
+  }
+}
+
+.search-input, .search-input:focus {
+  position: relative;
+  height: 34px;
+  outline: none;
+  border: 1px solid #999 !important;
+  
+  background: inherit;
+  padding-left: 25px;
+  width: 70%;
+  font-size: 1.1em;
+  -webkit-appearance: none;
+}
+
+.search-form {
+  height: 40px;
+}

@@ -12,6 +12,12 @@
     background-size: cover;
     @include media-breakpoint-down(lg) {
       width: 40%;
+      height: 170px;
+    }
+
+    @include media-breakpoint-down(md) {
+      width: 40%;
+      height: 200px;
     }
   }
 

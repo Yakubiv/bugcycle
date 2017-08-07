@@ -1,7 +1,15 @@
+= content_for :search do
+  = form_tag nil, class: 'search-form', method: :get do
+    .search-field
+      %label{for: 'search'}
+      = search_field_tag :search, params[:search], placeholder: "Filter", class: 'search-input input-round'
+
 %h3 Bicycles
 %hr
-
 - if @bicycles.any?
+  %span._m-r-xl Category filtering:
+  - Category.find_each do |category|
+    = link_to category, bicycles_path(category: category.name), class: "btn btn-info btn-sm #{'active' if params[:category] == category.name}"
   - @bicycles.each do |bike|
     .bicycle-box
       .bicycle-image{ style: "background-image: url(#{bike.image})" }
