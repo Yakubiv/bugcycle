@@ -1,13 +1,13 @@
 = form_for @bicycle do |f|
   .form-group
     = f.label :name
-    = f.text_field :name, class: 'form-control'
+    = f.text_field :name, class: 'form-control', required: true
   .form-group
     = f.label :image
-    = f.text_field :image, class: 'form-control'
+    = f.text_field :image, class: 'form-control', required: true
   .form-group
     = f.label :category_id, 'Category'
-    = f.select :category_id, options_for_select(Category.all.map{|c| [c.name, c.id]}), {include_blank: 'Select category'}, class: 'form-control'
+    = f.select :category_id, options_for_select(Category.all.map{|c| [c.name, c.id]}), {include_blank: 'Select category'}, class: 'form-control', required: true
   .form-group
     = f.label :description
     = f.text_area :description, rows: 6, class: 'form-control'

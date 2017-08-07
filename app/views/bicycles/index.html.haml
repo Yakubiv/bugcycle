@@ -1,1 +1,14 @@
-%h1 Bicycles
+%h3 Bicycles
+%hr
+
+- if @bicycles.any?
+  - @bicycles.each do |bike|
+    .bicycle-box
+      .bicycle-image{ style: "background-image: url(#{bike.image})" }
+      .bicycle-content
+        %h4= link_to bike.name, bike
+        %p Category: #{bike.category}
+        %p= truncate bike.description, length: 150
+  = paginate @bicycles
+- else
+  No bikes found

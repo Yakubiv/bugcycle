@@ -1,6 +1,8 @@
 class BicyclesController < ApplicationController
   before_action :load_bicycle, only: [:show, :edit, :update, :destroy]
+
   def index
+    @bicycles = Bicycle.all.page(params[:page]).per(2)
   end
 
   def show
