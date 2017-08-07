@@ -2,7 +2,7 @@ class BicyclesController < ApplicationController
   before_action :load_bicycle, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bicycles = Bicycle.all.page(params[:page]).per(2)
+    @bicycles = Bicycle.includes(:category).page(params[:page]).per(2)
   end
 
   def show
@@ -16,7 +16,8 @@ class BicyclesController < ApplicationController
   end
 
   def create
-    if @bicycle = current_user.bicycles.create(bicycles_params)
+    @bicycle = Bicycle.new(bicycles_params.merge(user_id: current_user.id))
+    if @bicycle.save
       redirect_to @bicycle, notice: t('.success')
     else
       render :new
