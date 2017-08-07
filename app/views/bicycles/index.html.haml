@@ -11,7 +11,9 @@
   - Category.find_each do |category|
     = link_to category, bicycles_path(category: category.name), class: "btn btn-info btn-sm #{'active' if params[:category] == category.name}"
   - @bicycles.each do |bike|
-    .bicycle-box
+    .bicycle-box{id: "bike_#{bike.id}"}
+      %span.usage
+        = link_to 'Mark as used', usage_path(bike.id), method: :put, class: 'btn btn-secondary btn-sm'
       .bicycle-image{ style: "background-image: url(#{bike.image})" }
       .bicycle-content
         %h4= link_to bike.name, bike

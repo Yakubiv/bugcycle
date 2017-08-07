@@ -6,4 +6,5 @@ Rails.application.routes.draw do
 
   resources :bicycles
   resource :manages, only: [:show]
+  resources :usages, only: [:update]
 end
