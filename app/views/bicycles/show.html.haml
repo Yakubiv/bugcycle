@@ -23,26 +23,27 @@
 %hr
 
 - if policy(@bicycle).see_suggestion?
-  %h4 Bicycle Suggestion
-  %table.table
-    %thead
-      %th
-      %th Name
-      %th Description
-      %th Status
-      %th
-    %tbody
-      - @bicycle.suggestions.each do |suggestion|
-        %tr
-          %td= image_tag suggestion.image, width: 30
-          %td.text-bold= link_to suggestion.name, bicycle_suggestion_path(@bicycle, suggestion)
-          %td= truncate suggestion.description, length: 150
-          %td= suggestion.status
-          %th
-            - if suggestion.user == current_user
-              = link_to edit_bicycle_suggestion_path(@bicycle, suggestion) do
-                %i.fa.fa-pencil
-              = link_to bicycle_suggestion_path(@bicycle, suggestion), method: :delete, data: {confirm: 'Are you sure?'} do
-                %i.fa.fa-trash
-            - if policy(@bicycle).merge_suggestion?
-              = link_to 'Check Suggestion', bicycle_suggestion_path(@bicycle, suggestion)
+  - if @bicycle.suggestions.any?
+    %h4 Bicycle Suggestion
+    %table.table
+      %thead
+        %th
+        %th Name
+        %th Description
+        %th Status
+        %th
+      %tbody
+        - @bicycle.suggestions.each do |suggestion|
+          %tr
+            %td= image_tag suggestion.image, width: 30
+            %td.text-bold= link_to suggestion.name, bicycle_suggestion_path(@bicycle, suggestion)
+            %td= truncate suggestion.description, length: 150
+            %td= suggestion.status
+            %th
+              - if suggestion.user == current_user
+                = link_to edit_bicycle_suggestion_path(@bicycle, suggestion) do
+                  %i.fa.fa-pencil
+                = link_to bicycle_suggestion_path(@bicycle, suggestion), method: :delete, data: {confirm: 'Are you sure?'} do
+                  %i.fa.fa-trash
+              - if policy(@bicycle).merge_suggestion?
+                = link_to 'Check Suggestion', bicycle_suggestion_path(@bicycle, suggestion)
