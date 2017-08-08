@@ -1,0 +1,8 @@
+.bicycle-box{id: "bike_#{bicycle.id}"}
+  %span.usage
+    = link_to 'Mark as used', usage_path(bicycle.id), method: :put, class: 'btn btn-secondary btn-sm'
+  .bicycle-image{ style: "background-image: url(#{bicycle.image})" }
+  .bicycle-content
+    %h4= link_to bicycle.name, bicycle
+    %p Category: #{bicycle.category}
+    %p= truncate bicycle.description, length: 150

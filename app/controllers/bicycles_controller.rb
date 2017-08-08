@@ -5,6 +5,13 @@ class BicyclesController < ApplicationController
     @bicycles = Bicycle.includes(:category)
                         .where.not(id: current_user.used_bicycles.ids)
                         .page(params[:page]).per(2)
+
+    respond_to do |format|
+      format.html {}
+      format.js do
+        @bicycles = @bicycles.where('name ilike :text OR description ilike :text', text: "%#{params[:text]}%")
+      end
+    end
   end
 
   def show

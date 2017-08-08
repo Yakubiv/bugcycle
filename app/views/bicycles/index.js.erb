@@ -1,0 +1,3 @@
+$("#bicycles").html("<%= escape_javascript(render(partial: 'bicycle', collection: @bicycles)) %>");
+$('#total_count').text("<%= @bicycles.total_count %>")
+$('.pagination').html('<%= j paginate @bicycles %>');
