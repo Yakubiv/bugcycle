@@ -1,0 +1,6 @@
+%h3 Edit #{@bicycle}
+
+%section._h_wrapper
+  = form_for @suggestion, url: bicycle_suggestions_path(@bicycle) do |f|
+    = render 'application/form_errors', form: @suggestion
+    = render 'bicycles/form', f: f

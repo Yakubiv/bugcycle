@@ -2,4 +2,6 @@
 %hr
 
 %section._h_wrapper
-  = render 'form'
+  = form_for @bicycle do |f|
+    = render 'application/form_errors', form: @bicycle
+    = render 'form', f: f

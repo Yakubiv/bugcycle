@@ -2,7 +2,8 @@ class BicyclesController < ApplicationController
   before_action :load_bicycle, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bicycles = Bicycle.where.not(id: current_user.used_bicycles.ids).includes(:category)
+    @bicycles = Bicycle.includes(:category)
+                        .where.not(id: current_user.used_bicycles.ids)
                         .page(params[:page]).per(2)
   end
 

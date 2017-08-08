@@ -1,0 +1,27 @@
+.row._h_wrapper
+  .col-md-4
+    = image_tag @suggestion.image, width: 300
+  .col-md-8
+    %h1
+      = @suggestion.name
+    - if @suggestion.user == current_user
+      %p
+        = link_to edit_bicycle_path(@bicycle) do
+          Edit
+        |
+        = link_to bicycle_path(@bicycle), method: :delete, data: { confirm: 'Are you sure?' } do
+          Delete
+    %p
+      Type:
+      %strong= @suggestion.category
+    %p
+      Owner:
+      %strong= @suggestion.user
+    %p= @suggestion.description
+%hr
+- if policy(@bicycle).merge_suggestion?
+  .row
+    .col-md-6
+      = link_to 'Approve', bicycle_suggestion_approves_path(@bicycle, @suggestion), method: :post, class: 'btn btn-info btn-block'
+    .col-md-6
+      = link_to 'Disapprove', bicycle_suggestion_approves_path(@bicycle, @suggestion), method: :delete, class: 'btn btn-danger btn-block'

@@ -4,7 +4,12 @@ Rails.application.routes.draw do
 
   root to: 'bicycles#index'
 
-  resources :bicycles
+  resources :bicycles do
+    resources :suggestions, except: [:index] do
+      resource :approves, only: [:create, :destroy]
+    end
+  end
+
   resource :manages, only: [:show]
   resources :usages, only: [:update]
 end
