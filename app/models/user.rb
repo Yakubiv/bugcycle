@@ -3,4 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :bicycles
+
+  has_many :usages
+  has_many :used_bicycles, through: :usages, source: :bicycle
 end

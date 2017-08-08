@@ -4,5 +4,6 @@ class Bicycle < ApplicationRecord
 
   validates :name, uniqueness: true
 
-  scope :except_usage, -> { where(usage: false) }
+  has_many :usages
+  # has_many :bicycle_users, through: :usages, source: :user
 end

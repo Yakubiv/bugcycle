@@ -1,7 +1,7 @@
 class UsagesController < ApplicationController
   def update
     @bicycle = Bicycle.find(params[:id])
-    @bicycle.update_column(:usage, true)
+    current_user.usages.create(bicycle_id: @bicycle.id)
 
     respond_to do |format|
       format.html { redirect_to :back }

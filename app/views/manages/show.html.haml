@@ -7,28 +7,10 @@
     = link_to new_bicycle_path, class: 'btn' do
       %i.fa.fa-plus
       Add bicycle
-
+  = link_to 'Created', manages_path, class: "btn btn-secondary #{'active' if params[:type].nil?}"
+  = link_to 'Used', manages_path(type: 'used'), class: "btn btn-secondary #{'active' unless params[:type].nil?}"
   - if @bicycles.any?
-    %table.table
-      %thead
-        %th
-        %th Name
-        %th Description
-        %th Suggests
-        %th
-      %tbody
-        - @bicycles.each do |bike|
-          %tr
-            %td= image_tag bike.image, width: 30
-            %td.text-bold= link_to bike.name, bike
-            %td= truncate bike.description, length: 150
-            %td
-              7
-            %th
-              = link_to edit_bicycle_path(bike) do
-                %i.fa.fa-pencil
-              = link_to bicycle_path(bike), method: :delete, data: {confirm: 'Are you sure?'} do
-                %i.fa.fa-trash
+    = render 'bikes_table', bicycles: @bicycles
   - else
     .blank-slate
       .slate-image
