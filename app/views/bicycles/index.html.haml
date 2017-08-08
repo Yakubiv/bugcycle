@@ -8,10 +8,10 @@
   Bicycles
   %small.text-muted#total_count= @bicycles.total_count
 %hr
+%span._m-r-xl Category filtering:
+- Category.find_each do |category|
+  = link_to category, bicycles_path(category: category.name), class: "btn btn-info btn-sm #{'active' if params[:category] == category.name}"
 - if @bicycles.any?
-  %span._m-r-xl Category filtering:
-  - Category.find_each do |category|
-    = link_to category, bicycles_path(category: category.name), class: "btn btn-info btn-sm #{'active' if params[:category] == category.name}"
   #bicycles
     = render @bicycles
   = paginate @bicycles

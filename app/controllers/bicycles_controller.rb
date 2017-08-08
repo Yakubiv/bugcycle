@@ -2,9 +2,11 @@ class BicyclesController < ApplicationController
   before_action :load_bicycle, only: [:show, :edit, :update, :destroy]
 
   def index
+    # Could extract to query object. Bad smell
     @bicycles = Bicycle.includes(:category)
                         .where.not(id: current_user.used_bicycles.ids)
                         .page(params[:page]).per(2)
+    @bicycles = @bicycles.joins(:category).where(categories: {name: params[:category]}) unless params[:category].blank?
 
     respond_to do |format|
       format.html {}

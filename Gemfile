@@ -25,8 +25,8 @@ gem 'font-awesome-sass'
 gem 'google-webfonts'
 
 gem 'pundit'
-gem 'title'
 gem 'kaminari'
+gem 'faker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
