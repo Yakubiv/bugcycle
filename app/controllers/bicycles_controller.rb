@@ -2,11 +2,8 @@ class BicyclesController < ApplicationController
   before_action :load_bicycle, only: [:show, :edit, :update, :destroy]
 
   def index
-    # Could extract to query object. Bad smell
-    @bicycles = Bicycle.includes(:category)
-                        .where.not(id: current_user.used_bicycles.ids)
-                        .page(params[:page]).per(2)
-    @bicycles = @bicycles.joins(:category).where(categories: {name: params[:category]}) unless params[:category].blank?
+    @bicycles = BicyclesQuery.search(filter_params)
+                             .page(params[:page]).per(2)
 
     respond_to do |format|
       format.html {}
@@ -49,6 +46,11 @@ class BicyclesController < ApplicationController
   end
 
   private
+
+  def filter_params
+    { category: params[:category],
+      current_user: current_user }
+  end
 
   def load_bicycle
     @bicycle = Bicycle.find(params[:id])
