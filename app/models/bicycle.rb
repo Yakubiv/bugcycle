@@ -2,7 +2,7 @@ class Bicycle < ApplicationRecord
   belongs_to :user
   belongs_to :category
 
-  validates :name, uniqueness: true
+  validates :name, uniqueness: { case_sensitive: false }
 
   has_many :usages
   # has_many :bicycle_users, through: :usages, source: :user

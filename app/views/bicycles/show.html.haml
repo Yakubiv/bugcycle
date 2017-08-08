@@ -11,5 +11,10 @@
         |
         = link_to bicycle_path(@bicycle), method: :delete, data: { confirm: 'Are you sure?' } do
           Delete
-    %strong Type: #{@bicycle.category}
+    %p
+      Type:
+      %strong= @bicycle.category
+    %p
+      Owner:
+      %strong= @bicycle.user
     %p= @bicycle.description

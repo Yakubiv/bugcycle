@@ -4,7 +4,9 @@
       %label{for: 'search'}
       = search_field_tag :search, params[:search], placeholder: "Filter", class: 'search-input input-round'
 
-%h3 Bicycles
+%h3
+  Bicycles
+  %small.text-muted= @bicycles.total_count
 %hr
 - if @bicycles.any?
   %span._m-r-xl Category filtering:
@@ -21,4 +23,9 @@
         %p= truncate bike.description, length: 150
   = paginate @bicycles
 - else
-  No bikes found
+  .blank-slate
+    .slate-image
+      ._center
+        %i.fa.fa-info-circle
+    .slate-text
+      ._center No Bikes Found
