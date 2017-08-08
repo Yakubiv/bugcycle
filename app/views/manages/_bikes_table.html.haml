@@ -11,8 +11,7 @@
         %td= image_tag bike.image, width: 30
         %td.text-bold= link_to bike.name, bike
         %td= truncate bike.description, length: 150
-        %td
-          7
+        %td= bike.suggestions.pending.count
         %th
           = link_to edit_bicycle_path(bike) do
             %i.fa.fa-pencil

@@ -3,6 +3,8 @@ class Suggestion < ApplicationRecord
   belongs_to :user
   belongs_to :category
 
+  scope :pending, -> { where(approved: nil) }
+
   validate :uniq_name
 
   def status
