@@ -4,6 +4,8 @@
     = yield :search
   .col-md-6
     %ul.header-tabs.pull-right
+      %li.header-tab{ class: active_if?(controller: 'cars') }
+        = link_to 'Cars', cars_path
       %li.header-tab{ class: active_if?(controller: 'bicycles') }
         = link_to 'Bicycles', bicycles_path
       %li.header-tab{ class: active_if?(controller: 'manages') }
