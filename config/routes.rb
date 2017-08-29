@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   root to: 'bicycles#index'
 
+  resources :autocompletes, only: :index
   resources :bicycles do
     resources :suggestions, except: [:index] do
       resource :approves, only: [:create, :destroy]

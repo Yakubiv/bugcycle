@@ -28,6 +28,8 @@ gem 'pundit'
 gem 'kaminari'
 gem 'faker'
 
+gem 'react-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
